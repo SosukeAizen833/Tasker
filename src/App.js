@@ -12,7 +12,7 @@ class App extends Component {
       tasks: []
     }
     this.addTask = this.addTask.bind(this)
-  
+    this.deleteTask = this.deleteTask.bind(this)
   }
   addTask(event) {
 
@@ -23,21 +23,20 @@ class App extends Component {
     let task = {name, description, priority,id}
     let tasks = this.state.tasks
     this.setState({ tasks: [...tasks, task] },() => {console.log(tasks)})
-    
     event.preventDefault()
-  
-    
-    
   }
-  
+  deleteTask(id,e){
+      this.setState({
+        tasks: this.state.tasks.filter(t => t.id != id)
+      })
+  }
   
   render(){
     return (
 
         <div>
           <Header/>
-          <div style={{display: 'flex', marginTop: '10px'}}>
-          <form className='col-sm-4 addTask container' onSubmit={this.addTask}>
+          <form className='col-sm-4 addTask container' style={{flexGrow: '0'}} onSubmit={this.addTask}>
             <div className='row'>
             <div className="form-group">
               <label htmlFor="name" >Name</label>
@@ -58,7 +57,9 @@ class App extends Component {
             <button type="submit" style={{float: 'right', display: 'block',marginLeft: 'auto'}} className="btn btn-primary col-3 mt-4">Submit</button>
             </div>
           </form>
-          <Overview tasks={this.state.tasks}/>
+          <div style={{display: 'flex', marginTop: '10px'}}>
+          
+            <Overview tasks={this.state.tasks} deleteTask={this.deleteTask}/>
         
           </div>
         </div>

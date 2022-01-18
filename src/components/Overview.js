@@ -4,12 +4,16 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 export default class Overview extends Component {
     constructor(props) {
         super(props);
         
         this.renderTasks = this.renderTasks.bind(this);
+    }
+    completeTask(taskid){
+
     }
     renderTasks(tasks){
             let taskArray = [];
@@ -23,9 +27,10 @@ export default class Overview extends Component {
                             aria-controls="panel1a-content"
                             id="panel1a-header">
                         <Typography>{task.name}</Typography>
-                        <Typography style={{marginLeft:"auto"}}>{task.priority}</Typography>
+                        <Typography style={{marginLeft:"auto"}}>{task.priority == 1 ? "High" : task.priority==2 ? "Mid" : "Low"}</Typography>
+                        <button style={{backgroundColor: "#DE9D90",border:"0px", marginLeft:"auto"}} onClick={(e)=>{this.props.deleteTask(task.id,e)}}><CheckCircleIcon/></button>
                         </AccordionSummary>
-                        <AccordionDetails>
+                        <AccordionDetails style={{backgroundColor: "white"}}>
                             <Typography>
                                 {task.description}
                             </Typography>
