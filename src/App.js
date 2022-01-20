@@ -1,5 +1,6 @@
 
 import React,{Component} from 'react';
+import ReactDOM from 'react-dom';
 import Header from './components/Header';
 import Overview from './components/Overview';
 import uniqid from 'uniqid';
@@ -32,10 +33,12 @@ class App extends Component {
   }
   
   render(){
+    
     return (
 
-        <div>
+        <div id="app"style={{display: 'flex',flexDirection: 'column',alignItems: 'space-between',justifyContent: 'center'}}>
           <Header/>
+          <h3>Your Daily Tasks- All in one place</h3>
           <form className='col-sm-4 addTask container' style={{flexGrow: '0'}} onSubmit={this.addTask}>
             <div className='row'>
             <div className="form-group">
@@ -57,11 +60,9 @@ class App extends Component {
             <button type="submit" style={{float: 'right', display: 'block',marginLeft: 'auto'}} className="btn btn-primary col-3 mt-4">Submit</button>
             </div>
           </form>
-          <div style={{display: 'flex', marginTop: '10px'}}>
-          
-            <Overview tasks={this.state.tasks} deleteTask={this.deleteTask}/>
+          <Overview tasks={this.state.tasks} deleteTask={this.deleteTask}/>
         
-          </div>
+          
         </div>
     )
   }

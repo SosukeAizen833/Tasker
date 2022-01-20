@@ -21,16 +21,16 @@ export default class Overview extends Component {
             for(let task of tasks){
                 const element =(
                 <div>
-                    <Accordion style={{backgroundColor: "#DE9D90"}} key={task.id}>
+                    <Accordion style={{backgroundColor: "#4d31cc",color: "#fff"}}key={task.id}>
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
                             aria-controls="panel1a-content"
                             id="panel1a-header">
                         <Typography>{task.name}</Typography>
-                        <Typography style={{marginLeft:"auto"}}>{task.priority == 1 ? "High" : task.priority==2 ? "Mid" : "Low"}</Typography>
-                        <button style={{backgroundColor: "#DE9D90",border:"0px", marginLeft:"auto"}} onClick={(e)=>{this.props.deleteTask(task.id,e)}}><CheckCircleIcon/></button>
+                        <Typography style={{marginLeft:"auto"}}><a>{task.priority == 1 ? "High" : task.priority==2 ? "Mid" : "Low"}</a></Typography>
+                        <button style={{backgroundColor: "#4d31cc",border:"0px", marginLeft:"auto"}} onClick={(e)=>{this.props.deleteTask(task.id,e)}}><CheckCircleIcon/></button>
                         </AccordionSummary>
-                        <AccordionDetails style={{backgroundColor: "white"}}>
+                        <AccordionDetails style={{backgroundColor: "white",color:"black"}}>
                             <Typography>
                                 {task.description}
                             </Typography>
@@ -52,12 +52,13 @@ export default class Overview extends Component {
             display: 'flex',
             flexDirection: 'column',
             gap: "10px",
-            width:"70%",
             padding: "10px"
         }
         return(
-            <div style={taskTable}>
-                {this.renderTasks(this.props.tasks)}
+            <div style={{display:"block",margin: "0 auto", width: "100%"}}>
+                <div style={taskTable}>
+                    {this.renderTasks(this.props.tasks)}
+                </div>
             </div>
     
         )
